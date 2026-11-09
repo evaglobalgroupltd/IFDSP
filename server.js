@@ -23,7 +23,7 @@ const login=(res,u)=>res.setHeader("Set-Cookie","s="+encodeURIComponent(sign(u.i
 const hits=new Map(),limited=ip=>{const n=Date.now(),a=(hits.get(ip)||[]).filter(t=>n-t<9e5);a.push(n);hits.set(ip,a);return a.length>20};
 const view=(a,adm)=>{const{notes,owner,docs,...r}=a;return{...r,owner,docs:docs.map(d=>({id:d.id,name:d.name})),files:docs.map(d=>d.name),...(adm?{notes}:{notes:[]})}};
 const EXT=/\.(pdf|jpe?g|png|docx?)$/i,E=/^\S+@\S+\.\S+$/,s=(x,n=500)=>String(x??"").slice(0,n);
-const app=express();app.disable("x-powered-by");
+const app=express();app.set("trust proxy",1);app.disable("x-powered-by");
 app.use((q,r,n)=>{r.setHeader("X-Content-Type-Options","nosniff");r.setHeader("X-Frame-Options","DENY");r.setHeader("Referrer-Policy","same-origin");n()});
 app.use(express.json({limit:"40mb"}));
 const need=(q,r,adm)=>{const u=who(q);if(!u||(adm&&u.role!=="admin")){r.status(u?403:401).json({error:u?"Not allowed":"Please log in"});return}return u};
