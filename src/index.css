@@ -1,0 +1,8 @@
+@tailwind base;@tailwind components;@tailwind utilities;
+html{scroll-behavior:smooth}::selection{background:#C9A227;color:#0C1430}h1,h2,h3{letter-spacing:-.01em}body{@apply bg-white font-sans text-ink antialiased dark:bg-neutral-900 dark:text-neutral-100}
+.kb{animation:kb 9s ease-out both}@keyframes kb{from{transform:scale(1)}to{transform:scale(1.05)}}
+.mq{animation:mq 45s linear infinite}@keyframes mq{to{transform:translateX(-50%)}}
+.page{animation:up .55s ease both}@keyframes up{from{opacity:0;transform:translateY(12px)}}
+@media(prefers-reduced-motion:reduce){.kb,.mq,.page{animation:none}}
+
+.dots{background-image:radial-gradient(rgba(201,162,39,.18) 1px,transparent 1px);background-size:22px 22px}
